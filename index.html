@@ -11,7 +11,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#" class="logo">Portfolio</a>
+        <a href="#" class="logo">Suhas' Dev Journey</a>
         <i class="fa-solid fa-bars" id="menu-icon"></i>
         <nav class="navbar">
             <a href="#home" class="active">Home</a>
@@ -43,7 +43,7 @@
         <img src="images/aboutpic2.png" alt="">
     </div>
     <div class="about-content">
-        <h2 class="heading">ABOUT <span>Me</span> </h2>
+        <h2 class="heading">ABOUT <span>ME</span> </h2>
         <h3>Computer Science Engineer</h3>
         <p>I am currently pursuing my Bachelor's in Computer Science and Engineering with a stellar CGPA of 9.61, reflecting my
         commitment to academic excellence. My passion for coding extends beyond academics, where I actively engage in
@@ -54,7 +54,7 @@
         positive impact in society. Beyond coding, I find joy in competitive gaming, particularly in Valorant, where strategic
         thinking and teamwork resonate with my approach to both gaming and software development. My journey is defined by a
         blend of technical proficiency, creative problem-solving, and a dedication to using technology for the greater good.</p>
-        <a href="" class="btn">Read More</a>
+        <a href="#contact" class="btn">Contact Me</a>
     </div>
 </section>
 
@@ -106,38 +106,57 @@
         </div>
     </div>
 </section>
-
-
+<div id="snackbar">Email Sent successfully.</div>
 <section class="contact" id="contact">
     <h2 class="heading">Contact <span>Me</span>
     </h2>
-    <form action="#">
+    <form id="contact-form">
         <div class="input-box">
-            <input type="text" placeholder="Full Name">
-            <input type="email" placeholder="Email Address">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
         </div>
         <div class="input-box">
-            <input type="number" placeholder="Mobile Number">
-            <input type="text" placeholder="Email Subject">
+            <input type="number" name="phone" placeholder="Mobile Number" required>
+            <input type="text" name="subject" placeholder="Email Subject" required>
         </div>
-        <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-        <input type="submit" value="Send Message" class="btn">
+        <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+        <input type="submit" value="Send Message" class="btn" onclick="myFunction()">
     </form>
 </section>
 
-   <footer class="footer">
+<footer class="footer">
     <div class="footer-text">
-        <p>Copyright &copy; 2024 All Rights Reserved by suhas </p>
+        <p>&copy; 2024 Made with ❤️ by Suhas.</p>
+
     </div>
     <div class="footer-iconTop">
         <a href="#home"><i class="fa-solid fa-angle-up"></i></a>
     </div>
-   </footer>
-
-
+</footer>
 
 <script src="https://unpkg.com/scrollreveal"></script>
 <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script src="JS/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    (function() {
+        emailjs.init("YOUR_USER_ID"); // Replace 'YOUR_USER_ID' with your actual EmailJS user ID
+    })();
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Generate a five digit number for the contact_number variable
+        this.contact_number.value = Math.random() * 100000 | 0;
+
+        // These IDs from the previous steps
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+            .then(function() {
+                alert('Message sent successfully!');
+            }, function(error) {
+                alert('Failed to send message. Error: ' + JSON.stringify(error));
+            });
+    });
+</script>
+<script src="JS/main.js"></script>
 </body>
 </html>
